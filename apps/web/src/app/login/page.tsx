@@ -159,8 +159,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-export const metadata = {
-  title: 'ログイン | ScaffAI',
-  description: 'ScaffAI プロフェッショナル足場設計プラットフォームにログイン',
-};
