@@ -8,12 +8,21 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Building2, Plus, History, Settings, LogOut, User } from 'lucide-react';
-import { auth, projects, type ScaffAIProject } from '@scaffai/config';
+
+// 一時的にダミーの認証・プロジェクト関数を使用
+const dummyAuth = {
+  getCurrentUser: async () => ({ data: { user: { email: 'test@example.com' } } }),
+  signOut: async () => console.log('Sign out')
+};
+
+const dummyProjects = {
+  getAll: async () => ({ data: [], error: null })
+};
 
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
-  const [userProjects, setUserProjects] = useState<ScaffAIProject[]>([]);
+  const [userProjects, setUserProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +33,7 @@ export default function DashboardPage() {
   // 🔐 認証チェック
   const checkAuth = async () => {
     try {
-      const { data } = await auth.getCurrentUser();
+      const { data } = await dummyAuth.getCurrentUser();
       if (!data.user) {
         router.push('/login');
         return;
@@ -39,7 +48,7 @@ export default function DashboardPage() {
   // 📋 プロジェクト読み込み
   const loadProjects = async () => {
     try {
-      const { data, error } = await projects.getAll();
+      const { data, error } = await dummyProjects.getAll();
       if (error) throw error;
       setUserProjects(data || []);
     } catch (error) {
@@ -52,10 +61,17 @@ export default function DashboardPage() {
   // 🚪 ログアウト
   const handleLogout = async () => {
     try {
-      await auth.signOut();
+      await dummyAuth.signOut();
+      // ローカルストレージもクリア
+      if (typeof window !== 'undefined') {
+        localStorage.clear();
+        sessionStorage.clear();
+      }
       router.push('/login');
     } catch (error) {
       console.error('Logout failed:', error);
+      // 強制的にログインページへ
+      router.push('/login');
     }
   };
 
@@ -91,7 +107,7 @@ export default function DashboardPage() {
               </span>
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <LogOut className="h-4 w-4" />
                 <span>ログアウト</span>
@@ -173,67 +189,24 @@ export default function DashboardPage() {
               </p>
             </div>
             
-            {userProjects.length === 0 ? (
-              <div className="text-center py-12">
-                <Building2 className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
-                  プロジェクトがありません
-                </h3>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  新しいプロジェクトを作成して始めましょう
-                </p>
-                <div className="mt-6">
-                  <button
-                    onClick={createNewProject}
-                    className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90"
-                  >
-                    <Plus className="-ml-1 mr-2 h-5 w-5" />
-                    新規作成
-                  </button>
-                </div>
+            <div className="text-center py-12">
+              <Building2 className="mx-auto h-12 w-12 text-gray-400" />
+              <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                プロジェクトがありません
+              </h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                新しいプロジェクトを作成して始めましょう
+              </p>
+              <div className="mt-6">
+                <button
+                  onClick={createNewProject}
+                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors"
+                >
+                  <Plus className="-ml-1 mr-2 h-5 w-5" />
+                  新規作成
+                </button>
               </div>
-            ) : (
-              <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-                {userProjects.map((project) => (
-                  <li key={project.id}>
-                    <div className="px-4 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700">
-                      <div className="flex items-center">
-                        <Building2 className="h-8 w-8 text-primary" />
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-900 dark:text-white">
-                            {project.name}
-                          </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {new Date(project.updated_at!).toLocaleDateString('ja-JP')}
-                            {project.last_edited_platform && (
-                              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200">
-                                {project.last_edited_platform}
-                              </span>
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => router.push(`/scaffold?project=${project.id}`)}
-                          className="text-primary hover:text-primary/80 text-sm font-medium"
-                        >
-                          編集
-                        </button>
-                        {project.calculation_result && (
-                          <button
-                            onClick={() => router.push(`/result?project=${project.id}`)}
-                            className="text-secondary hover:text-secondary/80 text-sm font-medium"
-                          >
-                            結果表示
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+            </div>
           </div>
         </div>
       </main>
