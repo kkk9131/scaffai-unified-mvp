@@ -3,7 +3,7 @@
  * Next.js App Router対応ログインページ
  */
 
-import { AuthPage } from '@scaffai/ui/auth';
+import { AuthPage } from '../../../../../../../packages/ui/src/components/auth/AuthPage';
 
 export default function LoginPage() {
   return <AuthPage />;
