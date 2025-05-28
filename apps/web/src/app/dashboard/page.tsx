@@ -6,7 +6,7 @@
 'use client';
 
 import { Calculator, FileText, Layers, Clock, AlertTriangle, Menu, Bell, User, Sun, Moon, Laptop, LogOut } from 'lucide-react';
-import { useTheme } from '../components/ThemeProvider';
+import { useTheme } from '../../components/ThemeProvider';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
