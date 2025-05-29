@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter=!api",
     "dev:web": "turbo run dev --filter=web",
     "dev:mobile": "turbo run dev --filter=scaffai",
+    "dev:web-only": "turbo run dev --filter=web",
+    "dev:both": "turbo run dev --filter=web --filter=scaffai",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
