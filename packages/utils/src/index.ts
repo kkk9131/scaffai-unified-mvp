@@ -1,7 +1,10 @@
-// 🎯 ScaffAI 共通ユーティリティエクスポート
+// 🏗️ ScaffAI Utils Package エクスポート
 export * from './api';
 
-// 🏗️ 今後追加予定のユーティリティ
+// 🔧 軒の出計算ユーティリティ
+export * from './eave-calculator';
+
+// 🌐 今後追加予定のユーティリティ
 // export * from './validation';
-// export * from './calculations';
-// export * from './helpers';
+// export * from './format';
+// export * from './constants';
