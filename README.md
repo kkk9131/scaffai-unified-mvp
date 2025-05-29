@@ -1,25 +1,24 @@
 # 🏗️ ScaffAI MVP - 足場計算システム
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8)](https://tailwindcss.com/)
-[![Turborepo](https://img.shields.io/badge/Turborepo-2.5-red)](https://turbo.build/)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue)](https://www.typescriptlang.org/)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8)](https://tailwindcss.com/)
+![Turborepo](https://img.shields.io/badge/Turborepo-2.5-red)](https://turbo.build/)
 
 **プロフェッショナル足場計算システム - Web/Mobile統合版**
 
-Railway APIと連携したリアルタイム足場計算システム。モバイル版の美しいUIをWeb版に完全移植し、統一された開発体験を実現。
+Railwayと連携したリアルタイム足場計算システム。モバイル版の美しいUIをWeb版に完全移植し、統一されたクロスプラットフォームを実現。
 
 ## 🎯 主要機能
 
 ### ✅ 完成済み機能 (Day 3&4)
 - **🏗️ ScaffoldContext統合** - Web/Mobile完全統一
 - **🌐 Railway API統合** - リアルタイム足場計算
-- **🎨 美しいUI** - モバイル版同等の入力体験
+- **🎨 美しいUI** - モバイル版の洗練されたUIを完全移植
 - **✨ アニメーション** - Framer Motion効果
-- **📱 レスポンシブ** - 全デバイス対応
-- **🔧 モノレポ構造** - 効率的な開発環境
+- **📱 推奨テストデータ** - モバイル版同期完了
 
-### 🚀 技術スタック
+### 🎯 技術スタック
 
 ```yaml
 フロントエンド:
@@ -68,19 +67,19 @@ pnpm dev      # 全体
 1. `pnpm dev:web` でサーバー起動
 2. http://localhost:3000 でダッシュボード表示
 3. 🏗️ 足場計算システム をクリック
-4. 建物情報を入力
-5. 🧮 足場計算実行 で結果取得
+4. 建築情報を入力
+5. 🧠 足場計算実行 で結果取得
 
 ### 推奨テストデータ
 ```
 建物の幅: 南北1000mm, 東西1000mm
 軒の出: 全て0mm
-敷地境界線: 全てOFF
-基準高さ: 2400mm
+外壁面積: 全てOFF
+基礎高さ: 2400mm
 屋根形状: 平屋根
-タイ支柱: OFF
+タイ支持: OFF
 軒先手すり: 0個
-ターゲットオフセット: 900mm
+ターゲット・オフセット: 900mm
 ```
 
 ## 📁 プロジェクト構造
@@ -89,7 +88,7 @@ pnpm dev      # 全体
 scaffai-unified-mvp/
 ├── apps/
 │   ├── web/                    # Next.js Webアプリ
-│   │   ├── src/app/scaffold/   # 足場計算ページ
+│   │   └── src/app/scaffold/   # 足場計算ページ
 │   │   └── src/contexts/       # ScaffoldContext
 │   ├── mobile/                 # Expo モバイルアプリ
 │   └── api/                    # FastAPI サーバー
@@ -114,25 +113,25 @@ scaffai-unified-mvp/
 ### Railway API
 - **エンドポイント**: https://scaffai-app-production.up.railway.app
 - **機能**: リアルタイム足場計算
-- **レスポンス**: 構造詳細, 隙間情報, 高さデータ
+- **レスポンス**: 詳細計算結果, 隠れデータ
 
 ## 🔧 開発
 
 ### 利用可能なスクリプト
 ```bash
-pnpm dev          # 全アプリ開発サーバー起動
-pnpm dev:web      # Web版のみ起動
-pnpm dev:mobile   # Mobile版のみ起動
-pnpm build        # 全体ビルド
-pnpm lint         # ESLint実行
-pnpm type-check   # TypeScript型チェック
+pnpm dev           # 全アプリ開発サーバー起動
+pnpm dev:web       # Web版のみ起動
+pnpm dev:mobile    # Mobile版のみ起動
+pnpm build         # 全体ビルド
+pnpm lint          # ESLint実行
+pnpm type-check    # TypeScript型チェック
 ```
 
 ### 開発ワークフロー
 1. 機能開発: `packages/` で共通コンポーネント作成
 2. 統合: `apps/web/` と `apps/mobile/` で利用
 3. テスト: 各プラットフォームで動作確認
-4. ビルド: Turborepoで最適化ビルド
+4. ビルド: Turborepで最適化ビルド
 
 ## 📊 成果
 
@@ -142,10 +141,10 @@ pnpm type-check   # TypeScript型チェック
 - ✅ モバイル版UI完全移植
 - ✅ Framer Motionアニメーション
 - ✅ プロフェッショナル結果表示
-- ✅ 完全レスポンシブ対応
+- ✅ 完全レスポンジブ対応
 
 ### パフォーマンス
-- **ビルド時間**: Turborepoで50%短縮
+- **ビルド時間**: Turborepで50%短縮
 - **開発サーバー**: 3秒以内起動
 - **コード共有率**: 80%以上
 - **TypeScript**: strict mode 100%
@@ -153,16 +152,32 @@ pnpm type-check   # TypeScript型チェック
 ## 🔮 今後の予定
 
 ### Day 5以降
-- 🎨 特殊材料入力セクション
+- 🎨 特殊構造入力セクション
 - 💾 Supabase統合 (データ永続化)
-- 📊 ダッシュボード強化
-- 📈 データ可視化
+- 📊 ダッシュボード弱化
+- 🔧 データ可視化
 - 🔐 認証システム
+
+## 🚨 **クリーンアップ必要**
+
+以下のファイルは誤って追加されたため削除が必要:
+- `EXPO_NO_TELEMETRY=1` (18KB - terminal log)
+- `api@1.0.0`, `scaffai-app@1.0.0` (空ファイル)
+- `cache`, `echo`, `turbo` (空ファイル)
+- `scaffai-unified@`, `scaffai-unified-mvp` (ファイル)
+
+**ローカルで削除してプッシュしてください:**
+```bash
+rm -f EXPO_NO_TELEMETRY=1 api@1.0.0 scaffai-app@1.0.0 cache echo turbo scaffai-unified@ scaffai-unified-mvp
+git add .
+git commit -m "🧹 不要ファイル削除"
+git push origin main
+```
 
 ## 📞 サポート
 
 - **問題報告**: GitHub Issues
-- **機能要望**: GitHub Discussions
+- **機能要望**: GitHub Discussions  
 - **技術サポート**: Pull Request歓迎
 
 ## 📄 ライセンス
