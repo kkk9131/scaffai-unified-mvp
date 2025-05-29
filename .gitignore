@@ -75,3 +75,15 @@ expo-env.d.ts
 tmp/
 temp/
 migration-backup/
+
+# 🚨 問題のあったファイルを防止
+EXPO_NO_TELEMETRY=*
+*@*.*
+cache
+echo
+turbo
+scaffai-unified-mvp
+scaffai-unified@*
+api@*
+app.json
+*.empty
