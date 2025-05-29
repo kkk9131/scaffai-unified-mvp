@@ -23,7 +23,10 @@ export default function DashboardRedirect() {
 /**
  * 📊 ScaffAI Dashboard Page
  * ログイン後の美しいダッシュボード（元のホームページデザインベース）
+<<<<<<< HEAD
  * ログイン後の美しいダッシュボード（元のホームページデザインベース）
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
  */
 
 'use client';
@@ -33,11 +36,14 @@ import { useTheme } from '../../components/ThemeProvider';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+<<<<<<< HEAD
 import { Calculator, FileText, Layers, Clock, AlertTriangle, Menu, Bell, User, Sun, Moon, Laptop, LogOut } from 'lucide-react';
 import { useTheme } from '../../components/ThemeProvider';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
 import { useRouter } from 'next/navigation';
 
 // インラインでThemeToggleを定義
@@ -45,12 +51,15 @@ const ThemeToggleInline = () => {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+<<<<<<< HEAD
 
 // インラインでThemeToggleを定義
 const ThemeToggleInline = () => {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,6 +72,7 @@ const ThemeToggleInline = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+<<<<<<< HEAD
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -73,6 +83,8 @@ const ThemeToggleInline = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
   }, []);
 
   const getThemeIcon = () => {
@@ -162,6 +174,7 @@ export default function Dashboard() {
     // 簡易的なログアウト（実際のSupabase認証は後で実装）
     router.push('/login');
   };
+<<<<<<< HEAD
   const getThemeIcon = () => {
     switch (theme) {
       case 'light':
@@ -249,6 +262,8 @@ export default function Dashboard() {
     // 簡易的なログアウト（実際のSupabase認証は後で実装）
     router.push('/login');
   };
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
 
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-gray-900">
@@ -271,6 +286,7 @@ export default function Dashboard() {
                 <User size={16} />
               </div>
               <span className="text-sm hidden sm:block">{user.email}</span>
+<<<<<<< HEAD
             </div>
             <button
               onClick={handleLogout}
@@ -299,6 +315,8 @@ export default function Dashboard() {
                 <User size={16} />
               </div>
               <span className="text-sm hidden sm:block">{user.email}</span>
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
             </div>
             <button
               onClick={handleLogout}
@@ -366,6 +384,7 @@ export default function Dashboard() {
           >
             <div className="bg-accent-100 dark:bg-accent-900/30 p-3 rounded-lg inline-block mb-4">
               <Layers className="h-6 w-6 text-accent-600 dark:text-accent-400" />
+<<<<<<< HEAD
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-8">
         <header className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -421,6 +440,8 @@ export default function Dashboard() {
           >
             <div className="bg-accent-100 dark:bg-accent-900/30 p-3 rounded-lg inline-block mb-4">
               <Layers className="h-6 w-6 text-accent-600 dark:text-accent-400" />
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
             </div>
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-1">描画ツール</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">2D/3D自動描画インターフェース</p>
@@ -462,6 +483,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <div className="bg-green-500 p-1.5 rounded-md">
                   <Calculator className="h-4 w-4 text-white" />
+<<<<<<< HEAD
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-1">描画ツール</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">2D/3D自動描画インターフェース</p>
             <Link
@@ -502,13 +524,18 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <div className="bg-green-500 p-1.5 rounded-md">
                   <Calculator className="h-4 w-4 text-white" />
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-green-800 dark:text-green-200">🏗️ 足場計算システム</span>
                   <p className="text-xs text-green-600 dark:text-green-300">リアルタイム計算 & Railway API</p>
+<<<<<<< HEAD
                 <div>
                   <span className="text-sm font-semibold text-green-800 dark:text-green-200">🏗️ 足場計算システム</span>
                   <p className="text-xs text-green-600 dark:text-green-300">リアルタイム計算 & Railway API</p>
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
                 </div>
               </div>
             </Link>
@@ -530,6 +557,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <FileText className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
                 <span className="text-sm text-slate-900 dark:text-white">保存された計算</span>
+<<<<<<< HEAD
             </Link>
             
             <Link
@@ -549,6 +577,8 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <FileText className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
                 <span className="text-sm text-slate-900 dark:text-white">保存された計算</span>
+=======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
               </div>
             </Link>
             
@@ -561,6 +591,7 @@ export default function Dashboard() {
                 <span className="text-sm text-slate-900 dark:text-white">足場図面描画</span>
               </div>
             </Link>
+<<<<<<< HEAD
             </Link>
             
             <Link
@@ -577,6 +608,10 @@ export default function Dashboard() {
 <<<<<<< HEAD
 >>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
 =======
+>>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
+=======
+          </div>
+        </div>
 >>>>>>> 6518365c6ffbcc78ef10d254de381c1ca8337857
       </div>
     </div>
