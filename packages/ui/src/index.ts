@@ -17,6 +17,9 @@ export type { SwitchFieldProps } from './components/SwitchField';
 export type { RadioFieldProps, RadioOption } from './components/RadioField';
 export type { SectionProps } from './components/Section';
 
+// 作図コンポーネント
+export * from './components/drawing';
+
 // 今後追加予定
 // export { Button } from './components/Button';
 // export { Card } from './components/Card';

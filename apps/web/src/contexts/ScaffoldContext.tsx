@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * 🏗️ ScaffAI Web版 ScaffoldContext (一時修正版)
+ * 🏗️ ScaffAI Web版 ScaffoldContext (修正版: 404エラー解決)
  */
 
 import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
@@ -84,7 +84,7 @@ export const ScaffoldProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  // 🧮 APIを使った計算
+  // 🧮 APIを使った計算 (修正版: ページ遷移を削除)
   const calculateScaffold = useCallback(async () => {
     console.log('🧮 calculateScaffold called');
     setIsLoading(true);
@@ -94,29 +94,22 @@ export const ScaffoldProvider: React.FC<{ children: React.ReactNode }> = ({
       const result = await calculateScaffoldAPI(inputData);
       setCalculationResult(result);
       
-      console.log('✅ Setting calculation result:', result);
-      console.log('🚀 Navigating to result page...');
+      console.log('✅ Calculation successful:', result);
       
-      // 結果画面に遷移 (Web版)
-      setTimeout(() => {
-        try {
-          router.push('/result');
-          console.log('✅ Navigation complete');
-        } catch (navError) {
-          console.error('❌ Navigation error:', navError);
-          alert('❌ 画面遷移エラー\n\nルーティングに問題が発生しました。');
-        }
-      }, 500);
-
+      // ✅ 修正: ページ遷移を削除 - 結果は同じページの結果タブで表示
+      // router.push('/result'); // この行を削除
+      
     } catch (err) {
       console.error('❌ Calculation failed:', err);
       const errorMessage = err instanceof Error ? err.message : '計算処理中にエラーが発生しました。';
       setError(errorMessage);
-      alert(`❌ 計算エラー\n\n${errorMessage}`);
+      
+      // デバッグ用のアラートは残す（任意で削除可能）
+      console.log(`❌ 計算エラー: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
-  }, [inputData, router]);
+  }, [inputData]);
 
   return (
     <ScaffoldContext.Provider

@@ -162,6 +162,8 @@ export default function ScaffoldPage() {
               </Section>
             </motion.div>
 
+
+
             {/* 軒の出 */}
             <motion.div variants={fadeIn}>
               <Section title="🏠 軒の出" variant="card">
@@ -338,6 +340,86 @@ export default function ScaffoldPage() {
               </Section>
             </motion.div>
 
+            {/* ✨ 特殊材料セクション (Day5復旧) - 最下部に配置 */}
+            <motion.div variants={fadeIn}>
+              <Section title="🔧 特殊材料" variant="card">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* 南北方向 - Purple テーマ */}
+                  <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-700">
+                    <h4 className="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4 flex items-center gap-2">
+                      📍 南北方向材料
+                    </h4>
+                    <div className="space-y-4">
+                      <InputField
+                        label="材料355"
+                        value={inputData.specialMaterial.northSouth.material355?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'northSouth.material355', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                      <InputField
+                        label="材料300"
+                        value={inputData.specialMaterial.northSouth.material300?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'northSouth.material300', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                      <InputField
+                        label="材料150"
+                        value={inputData.specialMaterial.northSouth.material150?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'northSouth.material150', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* 東西方向 - Orange テーマ */}
+                  <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-700">
+                    <h4 className="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-4 flex items-center gap-2">
+                      📍 東西方向材料
+                    </h4>
+                    <div className="space-y-4">
+                      <InputField
+                        label="材料355"
+                        value={inputData.specialMaterial.eastWest.material355?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'eastWest.material355', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                      <InputField
+                        label="材料300"
+                        value={inputData.specialMaterial.eastWest.material300?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'eastWest.material300', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                      <InputField
+                        label="材料150"
+                        value={inputData.specialMaterial.eastWest.material150?.toString() || ''}
+                        onChange={(value) => handleNumberInput('specialMaterial', 'eastWest.material150', value)}
+                        type="number"
+                        placeholder="例: 0"
+                        suffix="本"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 特殊材料の説明 */}
+                <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    📝 <strong>特殊材料について:</strong> 材料355/300/150はそれぞれ異なる長さの足場材料です。必要に応じて本数を指定してください。
+                  </p>
+                </div>
+              </Section>
+            </motion.div>
+
             {/* アクションボタン */}
             <motion.div 
               variants={fadeIn}
@@ -362,7 +444,19 @@ export default function ScaffoldPage() {
               </button>
               
               <button
-                onClick={calculateScaffold}
+                onClick={async () => {
+                  try {
+                    await calculateScaffold();
+                    // 計算成功時、結果タブに切り替え
+                    setTimeout(() => {
+                      setActiveTab('result');
+                    }, 500);
+                  } catch (error) {
+                    console.error('計算エラー:', error);
+                    // エラーがあっても結果タブでエラーを表示
+                    setActiveTab('result');
+                  }
+                }}
                 disabled={isLoading}
                 className="flex items-center gap-2 px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
               >

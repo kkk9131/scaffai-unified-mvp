@@ -1,10 +1,11 @@
 'use client';
 
-import { Calculator, FileText, Layers, Clock, AlertTriangle, Menu, Bell, User, Sun, Moon, Laptop } from 'lucide-react';
+import { Calculator, FileText, Layers, Clock, AlertTriangle, Menu, Bell, User, Sun, Moon, Laptop, LogOut } from 'lucide-react';
 import { useTheme } from '../components/ThemeProvider';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // インラインでThemeToggleを定義
 const ThemeToggleInline = () => {
@@ -99,12 +100,23 @@ const ThemeToggleInline = () => {
 };
 
 export default function Home() {
+  const router = useRouter();
   const user = { name: 'テストユーザー', email: 'test@scaffai.com' };
   const recentProjects = [
     { id: 1, name: '東京タワープロジェクト', date: '2025-05-15', status: '完了' },
     { id: 2, name: '大阪駅改修工事', date: '2025-05-12', status: '進行中' },
     { id: 3, name: '名古屋ビル建設', date: '2025-05-08', status: '計画中' },
   ];
+
+  // 🚪 ログアウト機能
+  const handleLogout = () => {
+    // ローカルストレージクリア
+    if (typeof window !== 'undefined') {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+    router.push('/login');
+  };
 
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-gray-900">
@@ -122,10 +134,24 @@ export default function Home() {
               <Bell size={20} />
               <span className="absolute top-1 right-1 w-2 h-2 bg-primary-500 rounded-full"></span>
             </button>
-            <div className="flex items-center gap-2 p-2 rounded-full text-slate-600 dark:text-slate-200">
-              <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white">
-                <User size={16} />
+            
+            {/* ユーザーメニュー */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 p-2 rounded-full text-slate-600 dark:text-slate-200">
+                <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white">
+                  <User size={16} />
+                </div>
+                <span className="text-sm font-medium hidden md:block">{user.name}</span>
               </div>
+              
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+                title="ログアウト"
+              >
+                <LogOut size={16} />
+                <span className="hidden md:block">ログアウト</span>
+              </button>
             </div>
           </div>
         </div>

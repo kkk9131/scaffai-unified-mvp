@@ -29,7 +29,7 @@ export default function LoginPage() {
       if (email === 'demo@scaffai.com' && password === 'demo123') {
         setMessage({ type: 'success', text: 'ログイン成功！ダッシュボードにリダイレクト中...' });
         setTimeout(() => {
-          router.push('/dashboard');
+          router.push('/');
         }, 1000);
       } else {
         throw new Error('メールアドレスまたはパスワードが間違っています');
@@ -160,7 +160,4 @@ export default function LoginPage() {
   );
 }
 
-export const metadata = {
-  title: 'ログイン | ScaffAI',
-  description: 'ScaffAI プロフェッショナル足場設計プラットフォームにログイン',
-};
+
